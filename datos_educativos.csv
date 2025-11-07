@@ -1,0 +1,101 @@
+id_estudiante,nombre,email,telefono,direccion,tipo_usuario,fecha_registro,timestamp,grupo_id,materia,nota,asistencia,estado_asistencia,habilidades,tipo_apoyo
+1,Juan Hernández,juan.hernández@correo.com,+573262950628,Calle 29 #18-48,docente,2024-04-14,2024-05-12 21:47:00,9,Ciencias,3.9,89.3,presente,"python, matemáticas",académico
+2,Valentina Pérez,valentina.pérez@correo.com,+573602632297,Calle 26 #84-45,estudiante,2025-07-12,2025-07-26 13:14:00,10,Arte,3.39,83.9,presente,"análisis, liderazgo",económico
+3,Ana Martínez,ana.martínez@correo.com,+573109747451,Calle 12 #49-7,estudiante,2025-01-02,2025-01-10 11:38:00,1,Inglés,3.31,62.3,presente,"matemáticas, lectura crítica, trabajo en equipo",orientación
+4,Laura Ramírez,laura.ramírez@correo.com,+573206468299,Calle 91 #9-3,familiar,2024-08-21,2024-09-17 09:05:00,4,Ciencias,3.31,94.6,presente,"investigación, análisis, resolución de problemas",económico
+5,Carlos Gómez,carlos.gómez@correo.com,+573654049436,Calle 82 #22-35,estudiante,2024-09-07,2024-09-19 05:29:00,5,Historia,4.76,60.8,presente,"comunicación, python",económico
+6,María López,maría.lópez@correo.com,+573980472440,Calle 73 #41-14,estudiante,2025-05-26,2025-06-24 12:56:00,8,Lengua,4.11,98.8,presente,"lectura crítica, resolución de problemas",económico
+7,José Ramírez,josé.ramírez@correo.com,+573428853029,Calle 47 #29-9,docente,2025-06-05,2025-06-29 15:05:00,1,Ciencias,3.12,67.3,presente,"liderazgo, matemáticas",técnico
+8,Sofía Torres,sofía.torres@correo.com,+573269953851,Calle 71 #2-44,estudiante,2024-04-27,2024-05-14 21:56:00,5,Educación Física,3.93,67.3,presente,"análisis, creatividad, python",económico
+9,Pedro Torres,pedro.torres@correo.com,+573979926683,Calle 14 #81-20,familiar,2025-10-16,2025-10-22 16:38:00,3,Educación Física,3.69,77.3,presente,"lectura crítica, python, investigación, comunicación",psicológico
+10,Laura Hernández,laura.hernández@correo.com,+573257109965,Calle 8 #31-37,estudiante,2024-03-21,2024-04-05 02:46:00,2,Lengua,1.97,71.6,presente,"lectura crítica, análisis, trabajo en equipo",orientación
+11,José López,josé.lópez@correo.com,+573997413271,Calle 70 #89-13,familiar,2024-11-15,2024-12-05 12:42:00,6,Inglés,2.69,71.7,presente,"matemáticas, comunicación, lectura crítica",psicológico
+12,Valentina Torres,valentina.torres@correo.com,+573247083812,Calle 76 #29-1,estudiante,2024-03-13,2024-03-14 22:40:00,4,Ciencias,3.75,74.7,ausente,"matemáticas, lectura crítica, comunicación",económico
+13,Ana Torres,ana.torres@correo.com,+573142068763,Calle 93 #74-37,docente,2025-04-29,2025-05-14 07:50:00,7,Historia,4.67,68.0,presente,"liderazgo, investigación, resolución de problemas, comunicación",técnico
+14,Juan Gómez,juan.gómez@correo.com,+573065082363,Calle 52 #44-7,familiar,2024-09-11,2024-09-28 06:12:00,8,Lengua,3.32,80.6,presente,"creatividad, comunicación, matemáticas",técnico
+15,Luis Gómez,luis.gómez@correo.com,+573054318806,Calle 84 #70-1,familiar,2024-04-05,2024-04-18 07:10:00,8,Inglés,3.06,84.3,presente,"python, análisis, liderazgo",psicológico
+16,Carlos Fernández,carlos.fernández@correo.com,+573306284028,Calle 55 #90-47,familiar,2025-07-23,2025-08-07 21:45:00,3,Historia,3.59,66.8,presente,"resolución de problemas, lectura crítica",psicológico
+17,Juan Pérez,juan.pérez@correo.com,+573627255918,Calle 62 #65-34,docente,2024-06-10,2024-06-12 01:32:00,3,Ciencias,3.02,87.4,presente,"comunicación, liderazgo, matemáticas, trabajo en equipo",académico
+18,Juan Ramírez,juan.ramírez@correo.com,+573088029013,Calle 54 #85-38,estudiante,2025-08-01,2025-08-30 16:20:00,5,Historia,3.27,77.6,presente,"comunicación, trabajo en equipo, liderazgo",académico
+19,Carlos Fernández,carlos.fernández@correo.com,+573339492674,Calle 119 #10-1,docente,2025-04-14,2025-04-17 19:36:00,2,Historia,3.49,61.4,presente,"investigación, matemáticas",académico
+20,Pedro Fernández,pedro.fernández@correo.com,+573895226828,Calle 70 #39-40,estudiante,2025-06-25,2025-07-21 00:42:00,9,Arte,2.65,96.4,ausente,"análisis, trabajo en equipo",psicológico
+21,Luis Rodríguez,luis.rodríguez@correo.com,+573292431670,Calle 37 #78-14,familiar,2024-12-17,2025-01-06 06:43:00,5,Inglés,4.16,72.5,presente,"matemáticas, liderazgo",económico
+22,Laura Rodríguez,laura.rodríguez@correo.com,+573684095277,Calle 34 #21-48,estudiante,2025-03-28,2025-04-10 17:45:00,9,Matemáticas,2.52,80.8,presente,"análisis, lectura crítica, python, liderazgo",económico
+23,Pedro Díaz,pedro.díaz@correo.com,+573136843584,Calle 6 #40-24,estudiante,2024-02-10,2024-03-02 11:13:00,4,Ciencias,2.44,98.8,presente,"liderazgo, análisis, comunicación, resolución de problemas",académico
+24,Pedro Díaz,pedro.díaz@correo.com,+573026614158,Calle 23 #43-27,familiar,2024-09-11,2024-10-06 08:10:00,2,Tecnología,3.66,91.0,presente,"comunicación, resolución de problemas, creatividad",económico
+25,Ana López,ana.lópez@correo.com,+573025409494,Calle 85 #25-26,estudiante,2024-12-02,2024-12-04 08:55:00,5,Educación Física,4.09,63.5,presente,"lectura crítica, investigación, python",psicológico
+26,Carlos Rodríguez,carlos.rodríguez@correo.com,+573623403479,Calle 34 #5-7,familiar,2025-09-02,2025-09-25 13:22:00,6,Tecnología,3.64,67.8,presente,"matemáticas, liderazgo, comunicación, análisis",psicológico
+27,Juan Torres,juan.torres@correo.com,+573993828765,Calle 104 #69-44,docente,2024-07-20,2024-07-22 11:27:00,6,Educación Física,3.41,75.5,presente,"trabajo en equipo, lectura crítica",económico
+28,Laura Díaz,laura.díaz@correo.com,+573748621833,Calle 38 #71-9,docente,2024-07-15,2024-08-14 13:42:00,7,Lengua,3.26,70.9,presente,"liderazgo, lectura crítica, python",económico
+29,José Ramírez,josé.ramírez@correo.com,+573651397897,Calle 84 #42-30,estudiante,2025-03-28,2025-04-03 14:43:00,9,Inglés,3.13,71.2,presente,"análisis, matemáticas, trabajo en equipo, creatividad",orientación
+30,Ana Hernández,ana.hernández@correo.com,+573241206079,Calle 104 #26-10,estudiante,2024-01-26,2024-02-10 01:15:00,10,Ciencias,4.35,81.7,presente,"resolución de problemas, comunicación, liderazgo, lectura crítica",técnico
+31,Juan Gómez,juan.gómez@correo.com,+573835822550,Calle 55 #29-12,estudiante,2025-06-14,2025-07-01 14:03:00,4,Ciencias,3.76,63.0,presente,"lectura crítica, resolución de problemas, investigación",técnico
+32,Luis Díaz,luis.díaz@correo.com,+573891816852,Calle 117 #71-29,docente,2024-06-11,2024-06-26 23:55:00,8,Arte,3.19,99.5,presente,"trabajo en equipo, lectura crítica, creatividad, investigación",académico
+33,María Hernández,maría.hernández@correo.com,+573251785565,Calle 35 #43-21,estudiante,2025-07-07,2025-07-11 02:08:00,4,Tecnología,2.96,60.2,presente,"comunicación, matemáticas, liderazgo, resolución de problemas",económico
+34,José Pérez,josé.pérez@correo.com,+573222086735,Calle 107 #54-25,estudiante,2025-08-21,2025-09-17 22:01:00,10,Tecnología,3.99,92.6,presente,"trabajo en equipo, liderazgo, lectura crítica",orientación
+35,Luis Ramírez,luis.ramírez@correo.com,+573964017593,Calle 29 #63-15,docente,2024-10-06,2024-10-06 13:31:00,7,Educación Física,4.32,90.9,presente,"análisis, creatividad, resolución de problemas",orientación
+36,José Ramírez,josé.ramírez@correo.com,+573606011277,Calle 85 #4-6,estudiante,2025-10-20,2025-11-16 13:08:00,8,Lengua,4.25,63.0,presente,"investigación, comunicación, creatividad",económico
+37,José Hernández,josé.hernández@correo.com,+573807464398,Calle 107 #54-17,estudiante,2024-03-24,2024-04-16 15:01:00,9,Matemáticas,2.83,94.5,ausente,"comunicación, matemáticas, python",psicológico
+38,Ana Pérez,ana.pérez@correo.com,+573667154083,Calle 20 #31-9,familiar,2025-04-29,2025-05-17 21:07:00,4,Inglés,3.25,84.9,presente,"análisis, matemáticas, resolución de problemas",económico
+39,Juan Hernández,juan.hernández@correo.com,+573618257024,Calle 87 #49-26,estudiante,2024-07-22,2024-08-13 02:37:00,4,Ciencias,3.12,72.4,presente,"resolución de problemas, matemáticas, python",económico
+40,Laura Gómez,laura.gómez@correo.com,+573543271261,Calle 83 #44-1,estudiante,2025-03-06,2025-03-19 15:06:00,6,Inglés,3.35,73.0,presente,"análisis, lectura crítica, trabajo en equipo",orientación
+41,Luis Fernández,luis.fernández@correo.com,+573499154414,Calle 56 #76-18,familiar,2024-11-26,2024-12-25 07:53:00,2,Arte,4.15,95.5,presente,"creatividad, liderazgo",económico
+42,Laura Rodríguez,laura.rodríguez@correo.com,+573523502759,Calle 28 #46-17,estudiante,2024-12-14,2025-01-02 08:56:00,5,Matemáticas,4.58,78.9,presente,"matemáticas, comunicación",técnico
+43,Ana Fernández,ana.fernández@correo.com,+573693532952,Calle 92 #63-29,estudiante,2024-01-18,2024-01-25 02:18:00,7,Historia,3.79,90.4,presente,"investigación, creatividad, resolución de problemas, comunicación",orientación
+44,Sofía Hernández,sofía.hernández@correo.com,+573329233929,Calle 33 #30-8,estudiante,2024-07-16,2024-08-08 10:07:00,9,Lengua,2.98,82.5,presente,"creatividad, trabajo en equipo, lectura crítica, python",académico
+45,Laura Rodríguez,laura.rodríguez@correo.com,+573324557359,Calle 2 #69-9,estudiante,2024-10-07,2024-10-24 01:03:00,5,Lengua,3.47,80.9,presente,"matemáticas, python, trabajo en equipo",técnico
+46,Laura Rodríguez,laura.rodríguez@correo.com,+573055165334,Calle 33 #62-8,estudiante,2024-03-07,2024-03-09 12:31:00,10,Matemáticas,4.75,77.1,presente,"trabajo en equipo, matemáticas, comunicación, python",orientación
+47,Valentina Ramírez,valentina.ramírez@correo.com,+573849051496,Calle 80 #29-50,docente,2025-06-19,2025-07-18 12:28:00,8,Arte,3.57,72.6,presente,"trabajo en equipo, python, matemáticas",académico
+48,Carlos Gómez,carlos.gómez@correo.com,+573168638768,Calle 31 #23-36,docente,2024-03-17,2024-03-30 05:00:00,8,Inglés,3.26,80.3,presente,"trabajo en equipo, resolución de problemas",técnico
+49,Ana Hernández,ana.hernández@correo.com,+573845923902,Calle 102 #81-38,estudiante,2024-07-21,2024-08-07 13:07:00,4,Lengua,3.32,76.4,ausente,"matemáticas, python",académico
+50,Valentina Ramírez,valentina.ramírez@correo.com,+573989122949,Calle 37 #57-8,docente,2025-04-24,2025-05-16 22:19:00,7,Arte,3.79,90.2,presente,"creatividad, matemáticas, python",técnico
+51,Valentina Hernández,valentina.hernández@correo.com,+573027772220,Calle 12 #30-44,docente,2025-08-12,2025-09-05 18:01:00,5,Matemáticas,2.85,97.2,presente,"creatividad, lectura crítica",técnico
+52,Pedro Ramírez,pedro.ramírez@correo.com,+573468027936,Calle 82 #63-6,familiar,2025-04-26,2025-05-06 11:26:00,6,Ciencias,3.1,92.3,presente,"liderazgo, creatividad, trabajo en equipo",técnico
+53,Luis Pérez,luis.pérez@correo.com,+573488365604,Calle 12 #41-17,familiar,2024-11-27,2024-12-09 03:49:00,9,Matemáticas,4.23,92.1,presente,"creatividad, liderazgo, python, matemáticas",orientación
+54,Sofía Fernández,sofía.fernández@correo.com,+573816033628,Calle 7 #27-18,estudiante,2025-07-16,2025-07-25 04:59:00,8,Inglés,3.76,67.5,presente,"resolución de problemas, comunicación, análisis, creatividad",orientación
+55,José Gómez,josé.gómez@correo.com,+573241270488,Calle 108 #15-30,estudiante,2024-04-30,2024-05-04 20:53:00,8,Arte,3.58,92.3,presente,"liderazgo, creatividad, lectura crítica",académico
+56,Pedro Díaz,pedro.díaz@correo.com,+573204666325,Calle 118 #77-33,estudiante,2024-05-19,2024-06-12 02:17:00,7,Educación Física,4.27,95.8,ausente,"trabajo en equipo, python, resolución de problemas, investigación",económico
+57,Valentina Fernández,valentina.fernández@correo.com,+573929066493,Calle 20 #58-35,familiar,2025-05-10,2025-05-27 11:21:00,9,Tecnología,2.94,69.1,presente,"comunicación, resolución de problemas, liderazgo",académico
+58,José Pérez,josé.pérez@correo.com,+573341639230,Calle 96 #61-46,familiar,2025-01-25,2025-02-19 12:42:00,3,Inglés,3.24,77.1,ausente,"lectura crítica, investigación",psicológico
+59,Sofía Gómez,sofía.gómez@correo.com,+573564735673,Calle 117 #59-1,familiar,2024-05-27,2024-06-16 13:55:00,3,Ciencias,3.74,60.3,presente,"investigación, liderazgo, matemáticas",económico
+60,Luis Díaz,luis.díaz@correo.com,+573340012324,Calle 81 #63-35,familiar,2024-02-06,2024-02-13 19:04:00,5,Historia,3.71,80.4,presente,"matemáticas, resolución de problemas, creatividad",académico
+61,Juan Pérez,juan.pérez@correo.com,+573348294647,Calle 102 #8-19,docente,2025-01-02,2025-01-06 11:27:00,4,Tecnología,2.37,64.8,presente,"análisis, resolución de problemas",psicológico
+62,José Ramírez,josé.ramírez@correo.com,+573733510170,Calle 31 #64-38,docente,2024-05-26,2024-06-15 07:29:00,5,Inglés,3.16,73.5,presente,"creatividad, trabajo en equipo",orientación
+63,Sofía Martínez,sofía.martínez@correo.com,+573630900313,Calle 39 #82-28,estudiante,2024-09-13,2024-09-22 14:54:00,4,Tecnología,3.37,80.8,presente,"comunicación, liderazgo",orientación
+64,Carlos Hernández,carlos.hernández@correo.com,+573023557463,Calle 107 #85-26,estudiante,2024-10-08,2024-11-04 00:36:00,1,Inglés,3.82,88.1,presente,"comunicación, investigación, resolución de problemas",académico
+65,Pedro Gómez,pedro.gómez@correo.com,+573970022337,Calle 81 #83-3,docente,2024-11-12,2024-11-30 14:02:00,6,Lengua,3.71,98.5,presente,"investigación, liderazgo, análisis",académico
+66,Luis Martínez,luis.martínez@correo.com,+573569998399,Calle 65 #35-11,estudiante,2024-09-20,2024-09-29 15:51:00,6,Ciencias,3.44,70.1,presente,"análisis, comunicación",técnico
+67,Luis Martínez,luis.martínez@correo.com,+573096961971,Calle 102 #51-1,familiar,2024-09-27,2024-10-11 17:07:00,6,Arte,1.96,71.4,presente,"investigación, matemáticas, comunicación, creatividad",psicológico
+68,Luis Martínez,luis.martínez@correo.com,+573982748549,Calle 79 #29-42,docente,2024-03-05,2024-03-19 20:52:00,5,Tecnología,3.48,61.5,presente,"python, trabajo en equipo",técnico
+69,Ana Torres,ana.torres@correo.com,+573145668163,Calle 50 #59-24,estudiante,2025-07-07,2025-07-30 13:37:00,3,Tecnología,3.55,62.1,presente,"resolución de problemas, liderazgo, trabajo en equipo",psicológico
+70,Ana Fernández,ana.fernández@correo.com,+573477488537,Calle 31 #47-7,docente,2025-01-11,2025-01-31 17:57:00,6,Matemáticas,5.0,71.1,presente,"matemáticas, creatividad",psicológico
+71,Valentina Pérez,valentina.pérez@correo.com,+573054308262,Calle 101 #43-16,docente,2024-05-08,2024-05-10 18:13:00,9,Historia,3.35,65.8,presente,"investigación, análisis",orientación
+72,Pedro Rodríguez,pedro.rodríguez@correo.com,+573580051935,Calle 33 #23-8,estudiante,2024-01-27,2024-02-07 04:00:00,4,Educación Física,3.74,79.6,presente,"python, análisis, liderazgo",orientación
+73,María Fernández,maría.fernández@correo.com,+573481331845,Calle 100 #47-33,estudiante,2025-08-30,2025-09-15 03:28:00,4,Matemáticas,4.41,69.5,presente,"lectura crítica, trabajo en equipo, creatividad, investigación",psicológico
+74,Sofía Díaz,sofía.díaz@correo.com,+573457707813,Calle 88 #14-32,estudiante,2025-03-30,2025-04-01 02:57:00,6,Lengua,4.1,89.1,presente,"resolución de problemas, lectura crítica, investigación",técnico
+75,Luis Hernández,luis.hernández@correo.com,+573487173220,Calle 65 #78-28,familiar,2024-04-11,2024-05-08 22:07:00,9,Historia,4.62,85.3,presente,"liderazgo, investigación",técnico
+76,María Martínez,maría.martínez@correo.com,+573458234365,Calle 41 #86-17,estudiante,2025-01-18,2025-02-16 04:43:00,8,Ciencias,2.38,81.4,presente,"matemáticas, liderazgo",psicológico
+77,Laura Rodríguez,laura.rodríguez@correo.com,+573597398528,Calle 8 #76-36,docente,2025-07-29,2025-08-01 10:42:00,7,Educación Física,2.71,61.6,presente,"python, trabajo en equipo, lectura crítica",económico
+78,Luis López,luis.lópez@correo.com,+573166140258,Calle 85 #62-15,estudiante,2024-04-20,2024-05-07 11:54:00,6,Ciencias,3.05,83.6,presente,"comunicación, liderazgo, python, trabajo en equipo",económico
+79,Carlos Hernández,carlos.hernández@correo.com,+573989493377,Calle 44 #45-1,estudiante,2024-07-04,2024-07-25 04:36:00,7,Ciencias,2.26,85.8,presente,"python, matemáticas, comunicación, creatividad",técnico
+80,Pedro Martínez,pedro.martínez@correo.com,+573334618074,Calle 93 #42-50,estudiante,2025-08-04,2025-09-01 19:05:00,1,Lengua,3.55,67.0,presente,"python, matemáticas, trabajo en equipo, comunicación",técnico
+81,Sofía Díaz,sofía.díaz@correo.com,+573293310667,Calle 28 #66-8,estudiante,2024-12-19,2024-12-28 13:07:00,10,Inglés,2.76,97.5,presente,"python, comunicación, liderazgo",orientación
+82,Ana Hernández,ana.hernández@correo.com,+573226810757,Calle 99 #18-49,estudiante,2024-09-18,2024-09-21 09:20:00,1,Inglés,4.74,65.5,presente,"análisis, liderazgo",orientación
+83,Luis Torres,luis.torres@correo.com,+573894807263,Calle 86 #46-5,docente,2025-02-10,2025-02-23 23:02:00,1,Inglés,2.87,97.0,ausente,"resolución de problemas, liderazgo, lectura crítica",técnico
+84,José Pérez,josé.pérez@correo.com,+573348717183,Calle 22 #80-30,estudiante,2025-01-05,2025-02-01 02:27:00,2,Historia,3.24,95.1,presente,"lectura crítica, matemáticas, liderazgo",económico
+85,Ana Martínez,ana.martínez@correo.com,+573836571442,Calle 22 #10-33,docente,2025-10-10,2025-10-26 03:33:00,4,Educación Física,4.15,92.7,presente,"análisis, comunicación, matemáticas, creatividad",económico
+86,Valentina Rodríguez,valentina.rodríguez@correo.com,+573816274954,Calle 98 #84-5,estudiante,2024-06-30,2024-07-14 20:31:00,10,Inglés,2.52,82.2,presente,"resolución de problemas, investigación, lectura crítica, matemáticas",técnico
+87,Sofía Hernández,sofía.hernández@correo.com,+573855052486,Calle 36 #76-4,estudiante,2024-12-26,2025-01-04 16:04:00,8,Inglés,2.21,63.7,presente,"trabajo en equipo, matemáticas, lectura crítica",orientación
+88,José Fernández,josé.fernández@correo.com,+573623123952,Calle 71 #6-29,estudiante,2025-08-08,2025-08-18 20:12:00,10,Inglés,3.65,95.9,presente,"creatividad, matemáticas",económico
+89,María Torres,maría.torres@correo.com,+573693773681,Calle 23 #6-16,familiar,2025-03-24,2025-04-09 14:33:00,10,Lengua,3.71,73.6,presente,"liderazgo, resolución de problemas, investigación",orientación
+90,Laura Gómez,laura.gómez@correo.com,+573354002758,Calle 13 #72-44,estudiante,2025-01-30,2025-02-22 09:16:00,10,Lengua,4.13,74.0,presente,"análisis, investigación, trabajo en equipo, lectura crítica",técnico
+91,María Hernández,maría.hernández@correo.com,+573600138002,Calle 49 #83-22,estudiante,2024-05-10,2024-06-05 21:44:00,9,Ciencias,3.92,95.5,presente,"lectura crítica, investigación, python",económico
+92,Ana Martínez,ana.martínez@correo.com,+573822653967,Calle 63 #25-15,estudiante,2024-05-20,2024-05-29 04:04:00,2,Matemáticas,3.74,91.2,presente,"análisis, liderazgo, resolución de problemas, matemáticas",académico
+93,Valentina Rodríguez,valentina.rodríguez@correo.com,+573774364348,Calle 57 #6-27,familiar,2025-01-08,2025-01-15 21:46:00,8,Arte,2.96,66.5,presente,"comunicación, lectura crítica, resolución de problemas",económico
+94,Sofía López,sofía.lópez@correo.com,+573394966219,Calle 87 #74-29,familiar,2025-04-17,2025-04-29 09:49:00,9,Tecnología,3.69,95.9,ausente,"resolución de problemas, análisis",económico
+95,Sofía Martínez,sofía.martínez@correo.com,+573595433590,Calle 120 #14-46,estudiante,2025-06-12,2025-06-14 03:18:00,3,Arte,3.73,60.2,presente,"análisis, liderazgo, matemáticas, creatividad",técnico
+96,Juan Díaz,juan.díaz@correo.com,+573057184151,Calle 51 #65-24,familiar,2024-08-29,2024-09-09 12:05:00,4,Matemáticas,2.93,66.4,presente,"investigación, análisis",académico
+97,Sofía Rodríguez,sofía.rodríguez@correo.com,+573814799481,Calle 91 #61-29,estudiante,2025-09-22,2025-09-24 00:57:00,1,Arte,4.99,86.1,presente,"lectura crítica, resolución de problemas",técnico
+98,Carlos López,carlos.lópez@correo.com,+573323358638,Calle 16 #7-16,estudiante,2025-03-05,2025-03-24 20:50:00,8,Ciencias,3.88,69.0,presente,"resolución de problemas, lectura crítica, python",orientación
+99,Pedro Hernández,pedro.hernández@correo.com,+573460891752,Calle 1 #79-23,estudiante,2024-09-03,2024-09-08 18:26:00,2,Educación Física,2.72,73.0,presente,"lectura crítica, resolución de problemas, python, comunicación",técnico
+100,José Martínez,josé.martínez@correo.com,+573272354893,Calle 96 #3-23,estudiante,2024-03-10,2024-04-02 11:15:00,2,Educación Física,4.13,89.9,presente,"lectura crítica, investigación, análisis",técnico
