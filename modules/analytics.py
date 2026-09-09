@@ -398,6 +398,11 @@ def render():
             st.warning(f"⚠️ No se pudo aplicar mapping canónico: {e} — se continúa con datos originales.")
         except Exception:
             raise
+    # Exponer df canónico para Analista IA (sesión) — Fase 4
+    if df is not None:
+        st.session_state["analytics_df_canonical"] = df
+    else:
+        st.session_state["analytics_df_canonical"] = None
     if df is not None:
         with st.expander("Vista previa de los datos"):
             st.dataframe(df.head())
