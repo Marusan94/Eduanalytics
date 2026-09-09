@@ -11,7 +11,7 @@ class EmbeddingProvider:
         return False
 
 class LocalHashEmbedding(EmbeddingProvider):
-    """Gratuito, determinista, sin API. Hash bag-of-words → vector 64 dim normalizado."""
+    """Fallback local gratuito, determinista, NO semántico real. Hash bag-of-words → vector 64 dim normalizado. Útil para que la Biblioteca funcione sin API key/costo, pero no es RAG semántico verdadero (dos textos relacionados no necesariamente quedan cerca)."""
     def __init__(self, dim=64):
         self.dim = dim
     def is_available(self):

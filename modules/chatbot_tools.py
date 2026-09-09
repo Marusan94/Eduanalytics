@@ -21,7 +21,10 @@ def _validate_column(col: str):
 
 def filter_df(df: pd.DataFrame, column: str, op: str, value) -> dict:
     """Filtra df por columna/op/value de forma segura."""
-    _validate_column(column)
+    try:
+        _validate_column(column)
+    except ValueError as e:
+        return {"error": str(e)}
     if op not in ALLOWED_OPS:
         return {"error": f"op '{op}' no permitido. Permitidos: {sorted(ALLOWED_OPS)}"}
     if column not in df.columns:
@@ -109,7 +112,10 @@ def groupby_agg(df: pd.DataFrame, by: str, agg: str, target: str) -> dict:
 
 def describe_column(df: pd.DataFrame, column: str) -> dict:
     """Describe columna canónica."""
-    _validate_column(column)
+    try:
+        _validate_column(column)
+    except ValueError as e:
+        return {"error": str(e)}
     if column not in df.columns:
         return {"error": f"columna '{column}' no existe"}
     try:

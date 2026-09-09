@@ -3,7 +3,16 @@ from modules.knowledge.vector_store import search, list_library
 
 def render():
     st.title("📚 Biblioteca de Conocimiento")
-    st.caption("Explora descubrimientos, informes y recursos. RAG busca semánticamente cuando hay embeddings.")
+    st.caption("Explora descubrimientos, informes y recursos. RAG busca semánticamente cuando hay embeddings; sin API key usa búsqueda textual + LocalHashEmbedding (fallback no semántico, solo para que la Biblioteca funcione sin costo).")
+    # Aviso fallback
+    try:
+        from modules.knowledge.embedding_provider import get_provider
+        prov = get_provider()
+        from modules.knowledge.embedding_provider import LocalHashEmbedding
+        if isinstance(prov, LocalHashEmbedding):
+            st.caption("ℹ️ Modo local sin API key: búsqueda por palabras clave (no embeddings semánticos reales). Configura OPENROUTER_API_KEY para RAG semántico.")
+    except Exception:
+        pass
 
     col1, col2 = st.columns([3,1])
     with col1:
