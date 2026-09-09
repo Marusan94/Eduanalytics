@@ -7,6 +7,13 @@ import os
 from datetime import datetime
 import warnings
 warnings.filterwarnings('ignore')
+os.environ["MPLBACKEND"] = "Agg"
+
+# Cache para no re-leer el CSV en cada cambio de módulo
+@st.cache_data(ttl=3600, show_spinner=False)
+def _cached_read_csv_from_bytes(file_bytes: bytes):
+    import io
+    return pd.read_csv(io.BytesIO(file_bytes))
 
 class AnalizadorEducativo:
     def __init__(self, df):
@@ -185,7 +192,7 @@ class AnalizadorEducativo:
                 ax.set_xlabel('Semana')
                 ax.set_ylabel('Usuarios Nuevos')
                 plt.xticks(rotation=45)
-                st.pyplot(fig)
+                st.pyplot(fig); plt.close(fig)
         
         st.subheader("🎯 Distribución de Tipos de Usuario")
         tipo_usuario = self.tipo_usuario_mas_registrado()
@@ -197,7 +204,7 @@ class AnalizadorEducativo:
                 fig, ax = plt.subplots(figsize=(8, 6))
                 ax.pie(tipo_usuario['cantidad'], labels=tipo_usuario['tipo'], autopct='%1.1f%%')
                 ax.set_title('Distribución de Tipos de Usuario')
-                st.pyplot(fig)
+                st.pyplot(fig); plt.close(fig)
         
         st.subheader("📄 Estado de Hojas de Vida")
         hoja_vida = self.hoja_vida_completa()
@@ -215,7 +222,7 @@ class AnalizadorEducativo:
                 ax.barh(habilidades['habilidad'], habilidades['frecuencia'])
                 ax.set_title('Top 10 Habilidades Más Frecuentes')
                 ax.set_xlabel('Frecuencia')
-                st.pyplot(fig)
+                st.pyplot(fig); plt.close(fig)
         
         st.subheader("👨‍👩‍👧‍👦 Consultas Familiares a Perfiles")
         consultas = self.consultas_familiares()
@@ -241,7 +248,7 @@ class AnalizadorEducativo:
                 ax.bar(horarios['franja_horaria'], horarios['accesos'])
                 ax.set_title('Accesos por Franja Horaria')
                 ax.set_ylabel('Número de Accesos')
-                st.pyplot(fig)
+                st.pyplot(fig); plt.close(fig)
         
         st.subheader("📈 Promedio de Notas por Grupo")
         promedio_notas = self.promedio_notas_grupo()
@@ -256,7 +263,7 @@ class AnalizadorEducativo:
                 ax.set_xlabel('Grupo')
                 ax.set_ylabel('Promedio de Nota')
                 plt.xticks(rotation=45)
-                st.pyplot(fig)
+                st.pyplot(fig); plt.close(fig)
         
         st.subheader("📚 Materias con Más Reprobaciones")
         reprobaciones = self.materias_mas_reprobaciones()
@@ -285,7 +292,7 @@ class AnalizadorEducativo:
                 fig, ax = plt.subplots(figsize=(8, 6))
                 ax.pie(apoyos['solicitudes'], labels=apoyos['tipo_apoyo'], autopct='%1.1f%%')
                 ax.set_title('Top 3 Tipos de Apoyo Solicitados')
-                st.pyplot(fig)
+                st.pyplot(fig); plt.close(fig)
         
         st.subheader("📅 Frecuencia de Solicitudes por Mes")
         solicitudes_mes = self.frecuencia_solicitudes_mes()
@@ -300,7 +307,7 @@ class AnalizadorEducativo:
                 ax.set_xlabel('Mes')
                 ax.set_ylabel('Solicitudes')
                 plt.xticks(rotation=45)
-                st.pyplot(fig)
+                st.pyplot(fig); plt.close(fig)
         
         st.subheader("📊 Resumen Estadístico por Grupo")
         resumen_grupo = self.resumen_estadistico_grupo()
@@ -317,7 +324,7 @@ class AnalizadorEducativo:
                 corr_matrix = self.df[numeric_cols].corr()
                 sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', center=0, ax=ax)
                 ax.set_title('Matriz de Correlación')
-                st.pyplot(fig)
+                st.pyplot(fig); plt.close(fig)
 
 
 def render():
@@ -344,7 +351,8 @@ def render():
 
     if uploaded_file is not None:
         try:
-            df = pd.read_csv(uploaded_file)
+            # Usa cache para no re-parsear el mismo archivo al cambiar de módulo y volver
+            df = _cached_read_csv_from_bytes(uploaded_file.getvalue())
             st.success(f"Archivo cargado exitosamente: {len(df)} registros, {len(df.columns)} columnas")
             with st.expander("Vista previa de los datos"):
                 st.dataframe(df.head())

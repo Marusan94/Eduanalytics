@@ -6,6 +6,27 @@ from plotly.subplots import make_subplots
 import folium
 from streamlit_folium import st_folium
 
+# Cache para no reconstruir el DataFrame en cada cambio de módulo
+@st.cache_data(ttl=3600, show_spinner=False)
+def _get_dashboard_df():
+    data = {
+        "Barrio": ["La América", "Robledo", "Belén", "Comuna 13 (San Javier)", "Manrique", "Popular"],
+        "Indice_Vulnerabilidad": [0.3, 0.7, 0.5, 0.8, 0.75, 0.6],
+        "Poblacion_Afectada": [1200, 4500, 3000, 5000, 4800, 3500],
+        "Pendiente_Laderas": [15, 40, 25, 45, 38, 35],
+        "lat": [6.2600, 6.2760, 6.2320, 6.2460, 6.2830, 6.2960],
+        "lon": [-75.5950, -75.5920, -75.6050, -75.6130, -75.5540, -75.5550],
+    }
+    df = pd.DataFrame(data)
+    def categoria_vulnerabilidad(valor: float) -> str:
+        if valor < 0.5:
+            return "Bajo"
+        elif valor < 0.8:
+            return "Medio"
+        return "Alto"
+    df["Categoria_Vulnerabilidad"] = df["Indice_Vulnerabilidad"].apply(categoria_vulnerabilidad)
+    return df
+
 def render():
     st.warning(
         "⚠️ **Datos de demostración.** Los valores de este panel (índice de "
@@ -16,24 +37,7 @@ def render():
         "decisión real."
     )
 
-    data = {
-        "Barrio": ["La América", "Robledo", "Belén", "Comuna 13 (San Javier)", "Manrique", "Popular"],
-        "Indice_Vulnerabilidad": [0.3, 0.7, 0.5, 0.8, 0.75, 0.6],
-        "Poblacion_Afectada": [1200, 4500, 3000, 5000, 4800, 3500],
-        "Pendiente_Laderas": [15, 40, 25, 45, 38, 35],
-        "lat": [6.2600, 6.2760, 6.2320, 6.2460, 6.2830, 6.2960],
-        "lon": [-75.5950, -75.5920, -75.6050, -75.6130, -75.5540, -75.5550],
-    }
-    df = pd.DataFrame(data)
-
-    def categoria_vulnerabilidad(valor: float) -> str:
-        if valor < 0.5:
-            return "Bajo"
-        elif valor < 0.8:
-            return "Medio"
-        return "Alto"
-
-    df["Categoria_Vulnerabilidad"] = df["Indice_Vulnerabilidad"].apply(categoria_vulnerabilidad)
+    df = _get_dashboard_df()
     COLOR_CATEGORIA = {"Bajo": "#2ecc71", "Medio": "#f39c12", "Alto": "#e74c3c"}
 
     # Filtro en main area (no sidebar para no colisionar con hub nav)
