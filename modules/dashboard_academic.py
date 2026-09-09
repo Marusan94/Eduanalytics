@@ -20,9 +20,11 @@ def _get_academic_df():
         return pd.DataFrame()
     try:
         return to_canonical(df_raw, IDENTITY_MAPPING)
+    except ValueError as e:
+        st.error(f"⚠️ Error de mapping canónico: {e}")
+        return pd.DataFrame()
     except Exception:
-        # Fallback RAW si validación falla (compatibilidad)
-        return df_raw
+        raise
 
 def _row_risk(nota: float, asistencia: float) -> float:
     """Riesgo determinista y transparente: nota + asistencia -> 0.0 a 1.0."""

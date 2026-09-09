@@ -167,3 +167,43 @@ def test_validate_canonical():
     df_bad_asist["asistencia"] = ["xyz"] * len(df_bad_asist)
     errs4 = validate_canonical(df_bad_asist)
     assert any("asistencia" in e.lower() for e in errs4)
+
+# Tests Fase 3D.1 — fallback no silencioso
+
+def test_dashboard_academic_valid():
+    from modules.dashboard_academic import _get_academic_df
+    df = _get_academic_df()
+    assert len(df) == 100
+    assert set(["id_estudiante","grupo_id","materia","nota","asistencia"]).issubset(df.columns)
+    assert validate_canonical(df) == []
+
+def test_analytics_preserves_extra_columns():
+    df_raw = pd.read_csv(CSV_PATH, encoding="utf-8-sig")
+    from modules.mapper import IDENTITY_MAPPING as IM
+    df_canon = to_canonical(df_raw, IM)
+    # simula lógica analytics.py: reincorporar extras
+    for col in df_raw.columns:
+        if col not in df_canon.columns:
+            df_canon[col] = df_raw[col]
+    for col in ["habilidades","estado_asistencia","nombre","email","fecha_registro"]:
+        assert col in df_canon.columns
+        assert len(df_canon) == len(df_raw)
+
+def test_invalid_not_hidden():
+    df_raw = pd.DataFrame({"ID": ["001"]})
+    bad_mapping = {"id_estudiante": "ID", "grupo_id": "Grupo", "materia": "Materia", "nota": "Nota", "asistencia": "Asist"}
+    with pytest.raises(ValueError):
+        to_canonical(df_raw, bad_mapping)
+    # dashboard_academic ya no hace silent fallback a df_raw (debe retornar DataFrame vacío con error, no raw)
+    # analytics ya no hace except: pass (solo ValueError con warning, otros raise)
+    # Verificamos que ValueError es la única capturada (no Exception genérico silencioso)
+    import pathlib
+    acad = pathlib.Path("modules/dashboard_academic.py").read_text(encoding="utf-8")
+    assert "except ValueError" in acad
+    assert "return to_canonical" in acad
+    assert "except Exception:" in acad and "raise" in acad  # inesperadas se propagan
+    ana = pathlib.Path("modules/analytics.py").read_text(encoding="utf-8")
+    assert "except ValueError as e:" in ana
+    assert 'st.warning' in ana
+    assert ana.count("except Exception:") == 1  # solo para re-raise
+    assert "except Exception:\n            raise" in ana or "except Exception:\n            raise" in ana.replace("\r\n","\n")
