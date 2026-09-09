@@ -1,26 +1,49 @@
+# EduAnalytics HUB Local 🎓
 
+**Hub localhost que integra 3 módulos Streamlit sin tocar repos originales.**
 
-# Analytics Educativo 📊
+- **Puerto:** `http://localhost:8501`
+- **Carpeta:** `DESKTOP/EDUANALYTICS-HUB-LOCAL` (nueva, aislada)
+- **Repos originales intactos:** `Documents/eduanalytics` y `Clases CYMETRIA/*` no modificados.
 
-Aplicación web/ Dashboard para análisis de datos educativos construida con Streamlite.
+## Módulos
 
-## Características
-1. Cuenta cuántos usuarios nuevos se registran cada semana y lo muestra claramente en una tabla.
-2. Identifica qué tipo de usuario se registra más y mostrar porcentajes por categoría.
-3. Analiza cuántos estudiantes completan su hoja de vida y calcula proporciones de completitud.
-4. Encuentra las habilidades más comunes en perfiles y muestra las diez más mencionadas.
-5. Cuenta cuántos familiares revisan el perfil del estudiante y detecta sin interacción.
-6. Analiza a qué horas del día los familiares ingresan con más frecuencia.
-7. Calcula el promedio general de notas por grupo y ordenar de mayor a menor.
-8. Detecta materias con más reprobados y muestra porcentaje de estudiantes con nota baja.
-9. Calcula el promedio de asistencia por estudiante y muestra su porcentaje total.
-10. Identifica estudiantes con más de tres ausencias y muestra lista correspondiente.
-11. Contar qué tipos de apoyo se piden más y muestra los tres principales.
-12. Analiza cuántas solicitudes se hacen cada mes para ver su frecuencia.
-13. Genera un resumen estadístico de notas y asistencia agrupado por cada grupo.
-14. Analiza la relación entre notas y asistencia usando correlación y visualización gráfica.
+| Módulo | Origen | Archivo Hub | API Key |
+|---|---|---|---|
+| 📊 Analytics Educativo | `Documents/eduanalytics/app.py:15-478` (14 análisis) | `modules/analytics.py` | No |
+| ⛰️ Dashboard Riesgo | `Clases CYMETRIA/Dashboard 2/app.py:1-245` (Folium + Plotly) | `modules/dashboard.py` | No |
+| 💬 Chatbot IA | `Clases CYMETRIA/Chatbot2/app.py:1-60` (OpenRouter streaming) | `modules/chatbot.py` | Sí `.streamlit/secrets.toml` |
 
-## Uso
-Sube un archivo CSV con datos educativos para generar análisis completos.
+## Uso local
 
-RUN "streamlit run app.py"
+```bash
+cd C:\Users\USUARIO\Desktop\EDUANALYTICS-HUB-LOCAL
+py -m pip install -r requirements.txt
+py -m streamlit run app.py
+# abre http://localhost:8501
+```
+
+Usa el **sidebar radio** para cambiar de módulo. El historial del chatbot está aislado en `st.session_state["hub_chatbot_messages"]` y no se borra al navegar.
+
+## Secrets
+
+Copia de `Clases CYMETRIA/Chatbot2/.streamlit/secrets.toml`:
+```toml
+OPENROUTER_API_KEY="sk-or-v1-..."
+```
+Ya está copiado en `.streamlit/secrets.toml` del HUB. No commitear.
+
+## Verificación
+
+- `py -m py_compile app.py modules/*.py` → OK (4 archivos)
+- `Invoke-WebRequest http://localhost:8501` → 200
+- Analytics con `datos_educativos.csv` → 14 secciones idénticas al original
+- Dashboard → 6 gráficos + mapa Folium
+- Chatbot → streaming `openai/gpt-4o-mini` vía OpenRouter
+
+## Próximos pasos (cuando quieras deploy)
+
+1. Rotar `OPENROUTER_API_KEY` (expuesta en repo local)
+2. `git init` en esta carpeta si quieres push a nuevo repo `Eduanalytics-HUB`
+3. Render: set env var `OPENROUTER_API_KEY` en dashboard, no `secrets.toml`
+4. Integrar `Automatiza Streamlit pro` como 4to módulo `modules/steam_lab.py` (fix bug línea 242)
