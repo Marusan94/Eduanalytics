@@ -362,8 +362,8 @@ def render():
                     st.error(f"Error al cargar ejemplo: {e}")
         st.caption("💡 En celular si no ves el archivo en Descargas, usa el botón verde de la derecha para cargar el ejemplo sin subir")
 
-    # File uploader más permisivo para celular (Android/iOS reportan MIME distintos)
-    uploaded_file = st.file_uploader("Sube tu archivo CSV", type=["csv", "txt"], key="analytics_uploader", help="En celular, si el picker filtra, elige 'Todos los archivos' o usa el botón de ejemplo arriba")
+    # File uploader totalmente permisivo para Android (el filtro csv bloquea archivos con (4) o MIME raro)
+    uploaded_file = st.file_uploader("Sube tu archivo CSV", type=None, key="analytics_uploader", help="En celular, selecciona datos_educativos_ejemplo.csv en Descargas. Si no aparece, usa el botón verde de arriba o elige 'Todos los archivos'")
     # Limpiar ejemplo si sube uno nuevo
     if uploaded_file is not None:
         st.session_state["analytics_df_ejemplo"] = None
