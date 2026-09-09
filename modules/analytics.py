@@ -13,7 +13,11 @@ os.environ["MPLBACKEND"] = "Agg"
 @st.cache_data(ttl=3600, show_spinner=False)
 def _cached_read_csv_from_bytes(file_bytes: bytes):
     import io
-    return pd.read_csv(io.BytesIO(file_bytes))
+    try:
+        return pd.read_csv(io.BytesIO(file_bytes), encoding="utf-8-sig")
+    except UnicodeDecodeError:
+        st.warning("⚠️ El CSV no es UTF-8 — se reprocesó como latin-1. Si ves caracteres raros (tildes/ñ), vuelve a exportar como UTF-8.")
+        return pd.read_csv(io.BytesIO(file_bytes), encoding="latin-1")
 
 class AnalizadorEducativo:
     def __init__(self, df):
