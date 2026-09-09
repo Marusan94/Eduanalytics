@@ -58,7 +58,11 @@ Cada seccion debe ser breve, clara y bien estructurada.
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
-        st.error(f"Error al generar articulo: {str(e)}")
+        err = str(e)
+        if "401" in err and "User not found" in err:
+            st.error("🔑 API Key inválida (401 User not found). Crea una nueva en https://openrouter.ai/keys y actualiza OPENROUTER_API_KEY en Render → Environment y en `.streamlit/secrets.toml`.")
+        else:
+            st.error(f"Error al generar articulo: {str(e)}")
         return None
 
 def generate_code(client, description):
@@ -112,7 +116,11 @@ Devuelve unicamente el codigo en Python.
                 return "\n".join(lines).strip()
         return code.strip()
     except Exception as e:
-        st.error(f"Error al generar codigo: {str(e)}")
+        err = str(e)
+        if "401" in err and "User not found" in err:
+            st.error("🔑 API Key inválida (401). Crea una nueva en https://openrouter.ai/keys y actualiza Render → Environment.")
+        else:
+            st.error(f"Error al generar codigo: {str(e)}")
         return None
 
 def generate_data_table(client, description):
@@ -148,7 +156,11 @@ El dataset debe ser util para analisis de datos en un contexto educativo con enf
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
-        st.error(f"Error al generar tabla: {str(e)}")
+        err = str(e)
+        if "401" in err and "User not found" in err:
+            st.error("🔑 API Key inválida (401). Crea una nueva en https://openrouter.ai/keys y actualiza Render.")
+        else:
+            st.error(f"Error al generar tabla: {str(e)}")
         return None
 
 def create_word_doc(article):

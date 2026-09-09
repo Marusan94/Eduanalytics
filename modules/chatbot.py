@@ -65,7 +65,11 @@ def render():
                     {"role": "assistant", "content": full_response}
                 )
             except Exception as e:
-                st.error(f"Error al obtener respuesta: {e}")
+                err = str(e)
+                if "401" in err and "User not found" in err:
+                    st.error("🔑 API Key inválida o revocada (401 User not found). Ve a https://openrouter.ai/keys → Create Key → copia la nueva `sk-or-v1-...` y pégala en Render → Environment → OPENROUTER_API_KEY y en `.streamlit/secrets.toml` local, luego redeploy.")
+                else:
+                    st.error(f"Error al obtener respuesta: {e}")
 
     # Acciones
     col1, col2 = st.columns(2)
