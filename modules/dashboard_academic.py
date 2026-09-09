@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import os
+from modules.mapper import to_canonical, IDENTITY_MAPPING
 
 # Cache para no reconstruir el DataFrame en cada cambio de modo
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -12,11 +13,18 @@ def _get_academic_df():
     if not os.path.exists(csv_path):
         return pd.DataFrame()
     try:
-        return pd.read_csv(csv_path, encoding="utf-8-sig")
+        df_raw = pd.read_csv(csv_path, encoding="utf-8-sig")
     except UnicodeDecodeError:
-        return pd.read_csv(csv_path, encoding="latin-1")
+        df_raw = pd.read_csv(csv_path, encoding="latin-1")
     except Exception:
         return pd.DataFrame()
+    try:
+        return to_canonical(df_raw, IDENTITY_MAPPING)
+    except ValueError as e:
+        st.error(f"⚠️ Error de mapping canónico: {e}")
+        return pd.DataFrame()
+    except Exception:
+        raise
 
 def _row_risk(nota: float, asistencia: float) -> float:
     """Riesgo determinista y transparente: nota + asistencia -> 0.0 a 1.0."""
