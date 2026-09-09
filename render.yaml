@@ -6,6 +6,6 @@ services:
     startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
     envVars:
       - key: OPENROUTER_API_KEY
-        value: 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
+        sync: false
       - key: PYTHON_VERSION
         value: 3.11.9
