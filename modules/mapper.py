@@ -9,6 +9,9 @@ definidas en modules/canonical_schema.py usando un mapping dict
 import pandas as pd
 from modules.canonical_schema import CANONICAL_FIELDS, REQUIRED_FIELDS
 
+# Mapping identidad para el CSV actual (datos_educativos.csv)
+IDENTITY_MAPPING = {k: k for k in CANONICAL_FIELDS}
+
 
 def _normalize_series(series: pd.Series, canon: str) -> pd.Series:
     field = CANONICAL_FIELDS[canon]

@@ -384,6 +384,18 @@ def render():
         except Exception as e:
             st.error(f"Error al procesar el archivo: {str(e)}")
             df = None
+    # Fase 3D: integración canónica mínima — normaliza 8 campos, preserva extras (compatibilidad)
+    if df is not None:
+        try:
+            from modules.mapper import to_canonical, IDENTITY_MAPPING
+            _df_raw = df
+            _df_canon = to_canonical(_df_raw, IDENTITY_MAPPING)
+            for col in _df_raw.columns:
+                if col not in _df_canon.columns:
+                    _df_canon[col] = _df_raw[col]
+            df = _df_canon
+        except Exception:
+            pass
     if df is not None:
         with st.expander("Vista previa de los datos"):
             st.dataframe(df.head())
