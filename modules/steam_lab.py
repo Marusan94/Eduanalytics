@@ -5,7 +5,11 @@ from io import BytesIO, StringIO
 import pandas as pd
 
 def get_client():
-    api_key = st.secrets.get("OPENROUTER_API_KEY")
+    api_key = None
+    try:
+        api_key = st.secrets.get("OPENROUTER_API_KEY")
+    except Exception:
+        api_key = None
     if not api_key:
         import os
         api_key = os.getenv("OPENROUTER_API_KEY")
