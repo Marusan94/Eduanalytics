@@ -336,55 +336,80 @@ def render():
     # Fallback si se ejecuta desde raíz
     if not os.path.exists(csv_path):
         csv_path = "datos_educativos.csv"
+    # Estado para ejemplo directo (solución para celular)
+    if "analytics_df_ejemplo" not in st.session_state:
+        st.session_state["analytics_df_ejemplo"] = None
     if os.path.exists(csv_path):
         with open(csv_path, "r", encoding="utf-8") as file:
             csv_data = file.read()
-        st.download_button(
-            "📥 Descargar csv de ejemplo",
-            csv_data,
-            "datos_educativos_ejemplo.csv",
-            "text/csv",
-            key="analytics_download_csv"
-        )
+        col_dl, col_uso = st.columns(2)
+        with col_dl:
+            st.download_button(
+                "📥 Descargar csv de ejemplo",
+                csv_data.encode("utf-8-sig"),
+                "datos_educativos_ejemplo.csv",
+                "text/csv",
+                key="analytics_download_csv",
+                help="En celular revisa Descargas/Downloads"
+            )
+        with col_uso:
+            if st.button("▶️ Usar datos de ejemplo directamente", key="analytics_usar_ejemplo", help="No necesitas descargar y subir, carga el ejemplo del servidor", type="secondary"):
+                try:
+                    # Carga directa sin pasar por el file picker del celular
+                    st.session_state["analytics_df_ejemplo"] = pd.read_csv(csv_path)
+                    st.success(f"Datos de ejemplo cargados: {len(st.session_state['analytics_df_ejemplo'])} registros — ya puedes generar el análisis abajo")
+                except Exception as e:
+                    st.error(f"Error al cargar ejemplo: {e}")
+        st.caption("💡 En celular si no ves el archivo en Descargas, usa el botón verde de la derecha para cargar el ejemplo sin subir")
 
-    uploaded_file = st.file_uploader("Sube tu archivo CSV", type=['csv'], key="analytics_uploader")
-
+    # File uploader más permisivo para celular (Android/iOS reportan MIME distintos)
+    uploaded_file = st.file_uploader("Sube tu archivo CSV", type=["csv", "txt"], key="analytics_uploader", help="En celular, si el picker filtra, elige 'Todos los archivos' o usa el botón de ejemplo arriba")
+    # Limpiar ejemplo si sube uno nuevo
     if uploaded_file is not None:
+        st.session_state["analytics_df_ejemplo"] = None
+
+    # Determinar df a usar: ejemplo directo tiene prioridad
+    df = None
+    if st.session_state["analytics_df_ejemplo"] is not None:
+        df = st.session_state["analytics_df_ejemplo"]
+        st.success(f"Datos de ejemplo activos: {len(df)} registros, {len(df.columns)} columnas — listo para generar análisis abajo")
+    elif uploaded_file is not None:
         try:
-            # Usa cache para no re-parsear el mismo archivo al cambiar de módulo y volver
             df = _cached_read_csv_from_bytes(uploaded_file.getvalue())
             st.success(f"Archivo cargado exitosamente: {len(df)} registros, {len(df.columns)} columnas")
-            with st.expander("Vista previa de los datos"):
-                st.dataframe(df.head())
-                st.write("**Información del dataset:**")
-                st.write(f"- Columnas: {list(df.columns)}")
-                st.write(f"- Tipos de datos: {df.dtypes.to_dict()}")
-            if st.button("🚀 Generar Análisis Completo", type="primary", key="analytics_generar"):
-                with st.spinner("Analizando datos..."):
-                    analizador = AnalizadorEducativo(df)
-                    analizador.generar_informe_completo()
-                    if not os.path.exists('resultados'):
-                        os.makedirs('resultados', exist_ok=True)
-                    st.subheader("📋 Resumen Ejecutivo")
-                    col1, col2, col3, col4 = st.columns(4)
-                    with col1:
-                        if 'tipo_usuario' in df.columns:
-                            total_estudiantes = len(df[df['tipo_usuario'] == 'estudiante'])
-                            st.metric("Total Estudiantes", total_estudiantes)
-                    with col2:
-                        if 'nota' in df.columns:
-                            promedio_general = df['nota'].mean()
-                            st.metric("Promedio General", f"{promedio_general:.2f}")
-                    with col3:
-                        if 'asistencia' in df.columns:
-                            asistencia_promedio = df['asistencia'].mean()
-                            st.metric("Asistencia Promedio", f"{asistencia_promedio:.1f}%")
-                    with col4:
-                        correlacion = analizador.correlacion_nota_asistencia()
-                        if correlacion:
-                            st.metric("Correlación Nota-Asistencia", f"{correlacion:.2f}")
         except Exception as e:
             st.error(f"Error al procesar el archivo: {str(e)}")
+            df = None
+    if df is not None:
+        with st.expander("Vista previa de los datos"):
+            st.dataframe(df.head())
+            st.write("**Información del dataset:**")
+            st.write(f"- Columnas: {list(df.columns)}")
+            st.write(f"- Tipos de datos: {df.dtypes.to_dict()}")
+        if st.button("🚀 Generar Análisis Completo", type="primary", key="analytics_generar"):
+            with st.spinner("Analizando datos..."):
+                analizador = AnalizadorEducativo(df)
+                analizador.generar_informe_completo()
+                if not os.path.exists('resultados'):
+                    os.makedirs('resultados', exist_ok=True)
+                st.subheader("📋 Resumen Ejecutivo")
+                col1, col2, col3, col4 = st.columns(4)
+                with col1:
+                    if 'tipo_usuario' in df.columns:
+                        total_estudiantes = len(df[df['tipo_usuario'] == 'estudiante'])
+                        st.metric("Total Estudiantes", total_estudiantes)
+                with col2:
+                    if 'nota' in df.columns:
+                        promedio_general = df['nota'].mean()
+                        st.metric("Promedio General", f"{promedio_general:.2f}")
+                with col3:
+                    if 'asistencia' in df.columns:
+                        asistencia_promedio = df['asistencia'].mean()
+                        st.metric("Asistencia Promedio", f"{asistencia_promedio:.1f}%")
+                with col4:
+                    correlacion = analizador.correlacion_nota_asistencia()
+                    if correlacion:
+                        st.metric("Correlación Nota-Asistencia", f"{correlacion:.2f}")
     else:
         st.info("""
         ### 📝 Formato esperado del CSV:
