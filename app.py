@@ -29,6 +29,11 @@ def _load_steam_lab():
     from modules import steam_lab
     return steam_lab
 
+@st.cache_resource
+def _load_laboratory():
+    from modules import laboratory
+    return laboratory
+
 # Estilo extra para distinguir el HUB local
 st.markdown("""
 <style>
@@ -42,7 +47,7 @@ st.sidebar.divider()
 
 mod = st.sidebar.radio(
     "Navegación",
-    ["📊 Analytics Educativo", "⛰️ Dashboard Riesgo", "💬 Chatbot IA", "🧪 STEAM Lab"],
+    ["📊 Analytics Educativo", "⛰️ Dashboard", "🤖 Analista IA", "🔬 Laboratorio", "🧪 STEAM Lab (legacy)"],
     index=0,
     key="hub_nav"
 )
@@ -66,10 +71,12 @@ st.sidebar.caption("API Key: .streamlit/secrets.toml (copia de Chatbot2)")
 # Router con cache — cada módulo se importa 1 vez y se reutiliza
 if mod == "📊 Analytics Educativo":
     _load_analytics().render()
-elif mod == "⛰️ Dashboard Riesgo":
+elif mod == "⛰️ Dashboard":
     _load_dashboard().render()
-elif mod == "💬 Chatbot IA":
+elif mod == "🤖 Analista IA":
     _load_chatbot().render()
+elif mod == "🔬 Laboratorio":
+    _load_laboratory().render()
 else:
     _load_steam_lab().render()
 
