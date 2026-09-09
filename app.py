@@ -3,9 +3,10 @@ os.environ["STREAMLIT_BROWSER_GATHER_USAGE_STATS"] = "false"
 import streamlit as st
 
 st.set_page_config(
-    page_title="EduAnalytics HUB Local",
+    page_title="EduAnalytics HUB",
     page_icon="🎓",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 # Cache de módulos para que cambiar de pestaña no re-importe todo
@@ -25,48 +26,67 @@ def _load_chatbot():
     return chatbot
 
 @st.cache_resource
-def _load_steam_lab():
-    from modules import steam_lab
-    return steam_lab
-
-@st.cache_resource
 def _load_laboratory():
     from modules import laboratory
     return laboratory
 
-# Estilo extra para distinguir el HUB local
+@st.cache_resource
+def _load_research_assistant():
+    from modules import research_assistant
+    return research_assistant
+
+# Estilo extra para el HUB
 st.markdown("""
 <style>
 .small-muted {color:#8A8A8A; font-size:13px;}
+.sidebar-badge {display:inline-block; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:600; margin-right:6px;}
+.badge-online {background:#e8f5e9; color:#2e7d32;}
+.badge-offline {background:#fdecea; color:#c62828;}
+.badge-beta {background:#fff3e0; color:#ef6c00;}
 </style>
 """, unsafe_allow_html=True)
 
+# Header del sidebar
 st.sidebar.title("🎓 EduAnalytics HUB")
-st.sidebar.caption("LOCALHOST • 4 módulos integrados • sin tocar repos originales")
+st.sidebar.caption("v3.2 • 100 registros • 8 campos canónicos")
+st.sidebar.divider()
+
+# Estado del sistema
+from modules.common import get_client
+client = get_client()
+api_status = "🟢 Conectado" if client else "🔴 Sin API Key"
+st.sidebar.markdown(f"""
+<div style="padding:8px; background:#f5f5f5; border-radius:8px; margin-bottom:8px;">
+    <b>Estado del sistema</b><br>
+    📊 Datos: 100 registros · 8 campos canónicos<br>
+    🔑 API: {api_status}<br>
+    📦 Cache: Activo (TTL 1h)
+</div>
+""", unsafe_allow_html=True)
+
 st.sidebar.divider()
 
 mod = st.sidebar.radio(
     "Navegación",
-    ["📊 Analytics Educativo", "⛰️ Dashboard", "🤖 Analista IA", "🔬 Laboratorio", "🧪 STEAM Lab (legacy)"],
+    ["📊 Analytics Educativo", "⛰️ Dashboard", "🤖 Analista IA", "🔬 Laboratorio", "🧑‍🔬 Asistente de Investigación"],
     index=0,
     key="hub_nav"
 )
 
 st.sidebar.divider()
-st.sidebar.markdown(
-    """
-    <span class="small-muted">
-    Repo nuevo: <code>DESKTOP/EDUANALYTICS-HUB-LOCAL</code><br/>
-    Orígenes:<br/>
-    • Analytics → Documents/eduanalytics/app.py<br/>
-    • Dashboard → Clases CYMETRIA/Dashboard 2/app.py<br/>
-    • Chatbot → Clases CYMETRIA/Chatbot2/app.py<br/>
-    • STEAM Lab → Clases CYMETRIA/Automatiza Streamlit pro/app.py<br/>
-    </span>
-    """,
-    unsafe_allow_html=True
-)
-st.sidebar.caption("API Key: .streamlit/secrets.toml (copia de Chatbot2)")
+
+# Info técnica colapsable
+with st.sidebar.expander("ℹ️ Info técnica"):
+    st.caption("""
+    **EduAnalytics HUB v3.2**  
+    Python 3.11.9 · Streamlit 1.28+ · Pandas 2.1  
+    Modelo: openai/gpt-4o-mini (OpenRouter)  
+    Embeddings: LocalHash (fallback) / OpenAI (si hay API)  
+    Datos: datos_educativos.csv (100 registros, 8 campos canónicos)
+    """)
+
+st.sidebar.divider()
+st.sidebar.info("💡 Usa `streamlit run app.py` para localhost:8501")
 
 # Router con cache — cada módulo se importa 1 vez y se reutiliza
 if mod == "📊 Analytics Educativo":
@@ -77,6 +97,8 @@ elif mod == "🤖 Analista IA":
     _load_chatbot().render()
 elif mod == "🔬 Laboratorio":
     _load_laboratory().render()
+elif mod == "🧑‍🔬 Asistente de Investigación":
+    _load_research_assistant().render()
 else:
     _load_steam_lab().render()
 
