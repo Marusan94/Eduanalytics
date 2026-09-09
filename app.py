@@ -1,3 +1,5 @@
+import os
+os.environ["STREAMLIT_BROWSER_GATHER_USAGE_STATS"] = "false"
 import streamlit as st
 
 st.set_page_config(
@@ -5,6 +7,27 @@ st.set_page_config(
     page_icon="🎓",
     layout="wide"
 )
+
+# Cache de módulos para que cambiar de pestaña no re-importe todo
+@st.cache_resource
+def _load_analytics():
+    from modules import analytics
+    return analytics
+
+@st.cache_resource
+def _load_dashboard():
+    from modules import dashboard
+    return dashboard
+
+@st.cache_resource
+def _load_chatbot():
+    from modules import chatbot
+    return chatbot
+
+@st.cache_resource
+def _load_steam_lab():
+    from modules import steam_lab
+    return steam_lab
 
 # Estilo extra para distinguir el HUB local
 st.markdown("""
@@ -40,19 +63,15 @@ st.sidebar.markdown(
 )
 st.sidebar.caption("API Key: .streamlit/secrets.toml (copia de Chatbot2)")
 
-# Router lazy para no cargar todo si no se usa
+# Router con cache — cada módulo se importa 1 vez y se reutiliza
 if mod == "📊 Analytics Educativo":
-    from modules import analytics
-    analytics.render()
+    _load_analytics().render()
 elif mod == "⛰️ Dashboard Riesgo":
-    from modules import dashboard
-    dashboard.render()
+    _load_dashboard().render()
 elif mod == "💬 Chatbot IA":
-    from modules import chatbot
-    chatbot.render()
+    _load_chatbot().render()
 else:
-    from modules import steam_lab
-    steam_lab.render()
+    _load_steam_lab().render()
 
 st.sidebar.divider()
 st.sidebar.info("💡 Tip: Usa `streamlit run app.py` desde esta carpeta para localhost:8501")
