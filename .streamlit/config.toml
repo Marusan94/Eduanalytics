@@ -1,7 +1,18 @@
 [theme]
-base="dark"
-primaryColor="#6C63FF"
-backgroundColor="#0F172A"
-secondaryBackgroundColor="#1E293B"
-textColor="#E2E8F0"
-font="sans serif"
+base = "dark"
+primaryColor = "#fafafa"
+backgroundColor = "#09090b"
+secondaryBackgroundColor = "#131316"
+textColor = "#fafafa"
+font = "sans serif"
+
+[server]
+headless = true
+port = 8501
+address = "0.0.0.0"
+enableCORS = false
+enableXsrfProtection = true
+maxUploadSize = 200
+
+[browser]
+gatherUsageStats = false
